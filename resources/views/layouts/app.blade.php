@@ -12,10 +12,10 @@
 
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+        @livewireStyles
 		@include('components.css')
 
-        @stack('css')
+        {{-- @stack('css') --}}
 
 	</head>
 	<body>
@@ -41,13 +41,22 @@
 
 					<!-- start: page -->
                     {{-- content --}}
-                    @yield('content')
+                    {{-- @yield('content') --}}
+                    {{ $slot }}
 					<!-- end: page -->
 				</section>
 			</div>
+
+            @livewireScripts
+        <script>
+            window.livewire.on('CarsAdded', ()=> {
+                $('#addCars').modal('hide');
+            })
+        </script>
 		</section>
 
         @include('components.js')
-        @stack('js')
+        {{-- @stack('js') --}}
+
 	</body>
 </html>
